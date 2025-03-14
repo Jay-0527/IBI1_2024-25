@@ -1,3 +1,6 @@
+#input height and weight
+#calculate the result and output it
+#output the health level
 weight=float(input("Please write your weight here"))
 height=float(input("Please write your height here")) #get your weight and height
 BMI=weight/height**2 # cauculate it
