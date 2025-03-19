@@ -7,9 +7,7 @@ print(dict1)
 percentage=dict1["HTML"] #Set a variable
 print(percentage)
 import matplotlib.pyplot as plt
-
 fig, ax = plt.subplots()
-
 languages = ['JavaScript', 'HTML', 'Python', 'SQL', 'TypeScript']
 counts = [62.3, 52.9, 51, 51, 38.5] #Set languages and their corresponding values.
 bar_colors = ['tab:red', 'tab:blue', 'tab:pink', 'tab:orange', 'tab:green'] #Set different colours in different bars.
