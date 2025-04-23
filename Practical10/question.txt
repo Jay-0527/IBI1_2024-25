@@ -1,0 +1,5 @@
+What country or countries have recorded a DALYs greater than 650,000 in a single year?
+solution: line 36~38 in dalys.py
+
+Plot a boxplot of DALYs across countries in 1990.
+solution: line 40~45 in dalys.py
