@@ -1,4 +1,4 @@
-#Set two lists for both uk_countries and cn_provinces and sort them
+#Set two lists for both uk_countries and cn_provinces and sort them.
 #Import matplotlib to draw pie chart.
 #Set a recipen to record the value. Use data and gredient to extract them.
 #Define a function to format the data. Darw the pie chart using ax.pie and set a colour.
@@ -12,9 +12,7 @@ print(f"countries in UK:{sort_uk_couintries}")
 print(f"Zhejiang neighbouring provinces:{sort_cn_provinces}")
 import matplotlib.pyplot as plt
 import numpy as np
-
 fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal")) #Set the figure size and make sure it is a pie.
-
 recipe1 = ["57.11 billion England",
           "3.13 billion Wales",
           "1.91 billion Northern_Ireland",
@@ -37,7 +35,6 @@ ax.set_title("Countries in UK")
 plt.show()
 
 fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-
 recipe2 = ["65.77 billion Zhejiang",
           "41.88 billion Fujian",
           "45.28 billion Jiangxi",
@@ -53,7 +50,6 @@ ax.legend(wedges, ingredients,
           title="Ingredients",
           loc="center left",
           bbox_to_anchor=(1, 0, 0.5, 1))
-
 plt.setp(autotexts, size=8, weight="bold")
 ax.set_title("Population distribution in Zhejiang neibouring provinces")
 plt.show()

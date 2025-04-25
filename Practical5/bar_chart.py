@@ -4,8 +4,8 @@
 #Make colours different in different bars and define ylabel and the title. Show the exact value on top of each bar.
 dict1={"JavaScript":62.3,"HTML":52.9,"Python":51,"SQL":51,"TypeScript":38.5}
 print(dict1)
-percentage=dict1["HTML"] #Set a variable
-print(percentage)
+chosent=input("Enter the language you want to see the percentage of users: ") #Ask user to input the language they want to see the percentage of users.``
+print(chosent,"percentage of users: ",dict1[chosent])
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 languages = ['JavaScript', 'HTML', 'Python', 'SQL', 'TypeScript']
