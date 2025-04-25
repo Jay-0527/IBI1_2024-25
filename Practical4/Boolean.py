@@ -4,3 +4,8 @@ W= X and Y
 Z= X or Y#Use and ,or 
 print(W)
 print(Z)
+# X | Y | X and Y | X or Y
+# T | T | T       | T
+# T | F | F       | T
+# F | T | F       | T
+# F | F | F       | F
