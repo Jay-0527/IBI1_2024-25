@@ -9,14 +9,14 @@ for k in vaccine_percentage: #use for loop to traverse every value in the list
     if N-infected-vaccine>0:
         susceptible=N-infected-vaccine
     else:
-        susceptible=0 #Make sure that the value is positive for every k
+        susceptible=0 # Make sure that the value is positive for every k
     
     recovered=0
     beta=0.3
-    gama=0.05 #set variables for given information
+    gama=0.05 # set variables for given information
     S=[susceptible]
     I=[infected]
-    R=[recovered] #Create lists to record the number of people who are susceptible, infected or recovered.
+    R=[recovered] # Create lists to record the number of people who are susceptible, infected or recovered.
     
     for i in range (1000): #set a 1000 times loops
         infected_probability=beta*I[-1]/N
