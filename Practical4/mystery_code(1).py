@@ -1,5 +1,5 @@
 # What does this piece of code do?
-# Answer:To check how manty times it will take until first_n and second_n are the same.
+# Answer:To check how manty times it will take until first_n and second_n are the same. The number for first_n and second_n is generated randoml from 1 to 6.
 # Import libraries
 # randint allows drawing a random number,
 # e.g. randint(1,5) draws a number between 1 and 5
