@@ -8,8 +8,8 @@ chosent=input("Enter the language you want to see the percentage of users: ") #A
 print(chosent,"percentage of users: ",dict1[chosent])
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-languages = ['JavaScript', 'HTML', 'Python', 'SQL', 'TypeScript']
-counts = [62.3, 52.9, 51, 51, 38.5] #Set languages and their corresponding values.
+languages = list(dict1.keys()) #Set a list of languages.
+counts =  list(dict1.values()) #Set a list of counts.
 bar_colors = ['tab:red', 'tab:blue', 'tab:pink', 'tab:orange', 'tab:green'] #Set different colours in different bars.
 bars=ax.bar(languages, counts, color=bar_colors)
 ax.set_ylabel('percentage')
