@@ -9,10 +9,10 @@ def dom_parse():
     doc = xml.dom.minidom.parse("go_obo.xml") # parse the XML file
     terms = doc.getElementsByTagName('term') # get all the terms
     max_counts = {                        
-        'molecular_function': {'count': 0, 'id': None},
-        'biological_process': {'count': 0, 'id': None},
-        'cellular_component': {'count': 0, 'id': None}
-    }  # Set up a dictionary to keep track of the maximum counts for each namespace
+        'molecular_function': {'count': 0, 'id': None, 'name': None},
+        'biological_process': {'count': 0, 'id': None, 'name': None},
+        'cellular_component': {'count': 0, 'id': None, 'name': None}
+        }  # Set up a dictionary to keep track of the maximum counts for each namespace
     for term in terms:
         namespace_elements = term.getElementsByTagName('namespace') # get the namespace element
         if not namespace_elements: 
@@ -24,11 +24,14 @@ def dom_parse():
             max_counts[namespace_node.data]['count'] = count  # update the maximum count if necessary
             id_elements = term.getElementsByTagName('id')  # get the id element
             id_node = id_elements[0].firstChild  # get the text content of the id element
+            name_elements = term.getElementsByTagName('name')  # get the name element
+            name_node = name_elements[0].firstChild  # get the text content of the name element
             max_counts[namespace_node.data]['id'] = id_node.data # update the id if necessary
+            max_counts[namespace_node.data]['name'] = name_node.data # update the name if necessary
     end = datetime.now() # get the end time
     print("\nDOM Results:")
-    for namespace, data in max_counts.items(): 
-        print(f"{namespace}: Term {data['id']} with {data['count']} is_a elements") 
+    for namespace, data in max_counts.items():    
+        print(f"{namespace}: Term {data['id']}, Name {data['name']}, with {data['count']} is_a elements") 
     return end - start
 
 # SAX parsing
@@ -39,18 +42,20 @@ class GoboSaxHandler(xml.sax.ContentHandler): # define a class to handle the SAX
         self.current_data = ""
         self.in_term = False # flag to indicate if we are inside a term element
         self.current_id = ""
+        self.current_name = ""
         self.current_namespace = ""
         self.is_a_count = 0 # count of is_a elements for the current term
         self.max_counts = {
-            'molecular_function': {'count': 0, 'id': ''},
-            'biological_process': {'count': 0, 'id': ''},
-            'cellular_component': {'count': 0, 'id': ''} 
+            'molecular_function': {'count': 0, 'id': '', 'name': ''},
+            'biological_process': {'count': 0, 'id': '', 'name': ''},
+            'cellular_component': {'count': 0, 'id': '', 'name': ''} 
         } # Set up a dictionary to keep track of the maximum counts for each namespace
 
     def startElement(self, name, attrs): # handle the start of an element
         if name == 'term':
             self.in_term = True
             self.current_id = ""
+            self.current_name = ""
             self.current_namespace = ""
             self.is_a_count = 0
         elif self.in_term:
@@ -73,24 +78,28 @@ class GoboSaxHandler(xml.sax.ContentHandler): # define a class to handle the SAX
                 if self.is_a_count > current_entry['count']: # update the maximum count if necessary
                     current_entry['count'] = self.is_a_count # update the count
                     current_entry['id'] = self.current_id # update the id
+                    current_entry['name'] = self.current_name # update the name
         elif name == 'id':
             self.current_id = self.current_data # update the current id
             self.current_data = ""
         elif name == 'namespace':
             self.current_namespace = self.current_data # update the current namespace
             self.current_data = ""
+        elif name == 'name':
+            self.current_name = self.current_data # update the current name
+            self.current_data = ""
 
 def sax_parse(): # parse the XML file using SAX
     start = datetime.now()
     parser = xml.sax.make_parser()
-    handler = GoboSaxHandler()
+    handler = GoboSaxHandler()        
     parser.setContentHandler(handler) # set the content handler
     parser.parse("go_obo.xml") # parse the XML file
     end = datetime.now() 
     print("\nSAX Results:")
     for namespace, data in handler.max_counts.items():
-        print(f"{namespace}: Term {data['id']} with {data['count']} is_a elements")
-    return end - start # return the time taken to parse the file
+        print(f"{namespace}: Term {data['id']}, Name {data['name']}, with {data['count']} is_a elements")
+    return end - start # return the time taken to parse the fileb
 
 if __name__ == "__main__":
     print("Processing with DOM...")
