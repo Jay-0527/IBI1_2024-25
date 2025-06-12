@@ -1,0 +1,18 @@
+length of amino acids: 222
+subcellular location: Mitochondrial Matrix
+hits: 250
+percentage identities: 58.1%~100%
+
+Human vs Mouse
+Alignment score: 1097.0
+Identity percentage: 90.09%
+
+Human vs Ransom
+Alignment score: -225.0
+Identity percentage: 6.31%
+
+Mouse vs Ransom
+Alignment score: -243.0
+Identity percentage: 4.95%
+
+Human and mouse SOD2 sequences are most closely related.
