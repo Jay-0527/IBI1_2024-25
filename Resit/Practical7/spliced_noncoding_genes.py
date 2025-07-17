@@ -6,9 +6,9 @@ output_file=open(outputfile_name,'w')
 def find_introns(sequence):
     donor=input_gene[0:2]
     acceptor=input_gene[2:4]
-    pattern=f"{donor}.*?{acceptor}"
-    matches = re.findall(pattern, sequence)
-    return f"Number of introns: {len(matches)}"
+    pattern = f"(?=({donor}.*?{acceptor}))" #set the pattern to match the donor and acceptor sites of the input gene
+    matches = re.findall(pattern, sequence) #find all the matches of the pattern in the sequence
+    return f"Number of introns: {len(matches)}" #return the number of introns in the sequence
 
 
 genes = {}
