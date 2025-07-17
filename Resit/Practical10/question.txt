@@ -1,0 +1,6 @@
+question: How has the relationship between the DALYs in France and the UK (two similarly sized countries) changed over time? Are they becoming more similar, less similar?
+
+Analysis starts at line: 40
+
+discussion of result: The DALYs rates in both countries have decreased over time, but the gap between them has remained relatively constant. 
+                      France consistently shows slightly lower DALYs rates than the UK across the entire time period. 
