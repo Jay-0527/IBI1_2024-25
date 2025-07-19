@@ -3,16 +3,21 @@ input_file=open('Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa','r') #open the fi
 outputfile_name=f"{input_gene}_spliced_genes.fa" #set the name of the output file
 output_file=open(outputfile_name,'w')
 
+import re
 def find_introns(sequence):
     donor=input_gene[0:2]
     acceptor=input_gene[2:4]
-    pattern = f"(?=({donor}.*?{acceptor}))" #set the pattern to match the donor and acceptor sites of the input gene
-    matches = re.findall(pattern, sequence) #find all the matches of the pattern in the sequence
-    return f"Number of introns: {len(matches)}" #return the number of introns in the sequence
-
+    donor_position = [m.start() for m in re.finditer(donor, sequence)] #find all the positions of the donor site
+    acceptor_position = [m.start() for m in re.finditer(acceptor, sequence)] #find all the positions of the acceptor site
+    count = 0
+    for i in range(len(donor_position)):
+        for j in range(len(acceptor_position)):
+            if donor_position[i] < acceptor_position[j]: #check if the donor site is before the acceptor site
+                count += 1 #if yes, increment the count
+    return f"Number of possible introns: {count}" #return the number of introns in the sequence
+    
 
 genes = {}
-import re
 for lines in input_file:
     lines=lines.rstrip()
     if re.search(r'^>', lines):

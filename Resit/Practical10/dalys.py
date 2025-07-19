@@ -14,7 +14,7 @@ print(dalys_data.iloc[0:10, [2, 3]]) # Columns are 0-indexed
 
 # Task 3: Boolean indexing for 1990
 my_columns=[True,False,False,True]
-print(dalys_data.loc[dalys_data['Year']==1990, my_columns]) # Columns are 0-indexed
+print(dalys_data.loc[dalys_data.Year==1990, my_columns]) # Select rows where Year is 1990 and columns 1 and 4
 
 # Task 4: China analysis
 china_data = dalys_data.loc[dalys_data['Entity'] == 'China', ['Year', 'DALYs']] # Select China data
