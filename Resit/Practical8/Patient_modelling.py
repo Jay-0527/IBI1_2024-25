@@ -7,13 +7,13 @@ class Patient:
     def bmi(self):
         bmi = self.weight / (self.height/100)**2
         if bmi < 18.5:
-            return "Underweight"
+            return self.name + ":Underweight"
         elif 18.5 <= bmi <= 25:
-            return "Healthy"
+            return self.name + ":Healthy"
         elif bmi>25:
-            return "Overweight"
+            return self.name + ":Overweight"
         
 #Example usage
 p1 = Patient("John", 25, 175, 70)
-print(p1.bmi()) # Output: Healthy
+print(p1.bmi()) # Output: John:Healthy
     
